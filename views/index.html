@@ -39,12 +39,18 @@
                 <label for="message">Message:</label>
                 <input type="text" name="message" id="message" class="form-control" autocomplete="off">
             </div>
+            <div class="form-group mt-2">
+                <button type="button" id="sendBtn" class="btn btn-success">Send Message</button>
+                <div id="status" class="mt-2 float-end">
+
+                </div>
+            </div>
 
             <input type="hidden" name="action" id="action">
+
             <hr>
-            <div class="form-group">
-                <button type="button" id="sendBtn" class="btn btn-success">Send Message</button>
-            </div>
+
+
 
             <hr>
 
@@ -66,6 +72,8 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
 
+<script src="/static/reconnecting-websocket.min.js"></script>
+
 <script>
     let socket = null;
     const o = document.getElementById('output')
@@ -81,18 +89,25 @@
 
 
     document.addEventListener("DOMContentLoaded", function () {
-        socket = new WebSocket("ws://127.0.0.1:8080/websocket");
+        socket = new ReconnectingWebSocket('ws://127.0.0.1:8080/websocket', null, {debug : true, reconnectInterval : 3000});
+
+        const offline = `<span class="badge bg-danger">Not connected</span>`
+        const online = `<span class="badge bg-success">Connected</span>`
+        let statusDiv = document.getElementById("status");
 
         socket.onopen = () => {
             console.log("Successfully connected");
+            statusDiv.innerHTML = online
         }
 
         socket.onclose = () => {
             console.log("connection closed");
+            statusDiv.innerHTML = offline
         }
 
         socket.onerror = error => {
             console.log("there was an error");
+            statusDiv.innerHTML = offline
         }
 
         socket.onmessage = msg => {
