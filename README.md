@@ -2,7 +2,7 @@
 <h1 align="center">
   <br>
   <a href="http://www.amitmerchant.com/electron-markdownify">
-	  <img src="" alt="Markdownify" width="200"></a>
+	  <img src="" alt="Kawe" width="200"></a>
   <br>
   Simple Livechat
   <br>
