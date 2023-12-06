@@ -2,7 +2,7 @@
 <h1 align="center">
   <br>
   <a href="http://www.amitmerchant.com/electron-markdownify">
-	  <img src="" alt="Kawe" width="200"></a>
+	  <img src="https://i.ibb.co/8zGvZdF/logo-kawe-gold-gradasi-mark.png" alt="Kawe" width="200"></a>
   <br>
   Simple Livechat
   <br>
